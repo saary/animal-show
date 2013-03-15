@@ -57,7 +57,6 @@ function prepareSlider() {
       getAnimalImages(animals[i], function(json) {
         var imageSrc = getRandomImage(json);
         img.attr('src', imageSrc);
-        console.log(imageSrc);
       });
     }(slide.find('img')));
     sliderWrapper.append(slide);
