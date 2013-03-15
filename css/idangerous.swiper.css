@@ -74,12 +74,12 @@
 
 /* Specify Swiper's Size: */
 .swiper-container, swiper-slide {
-	max-height: 600px;
 	width: 90%;
 }
 
 .swiper-slide img {
-	height: 600px;
+	bottom: 0;
+	top: 0;
 	width: auto;
 }
 
