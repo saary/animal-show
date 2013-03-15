@@ -73,9 +73,31 @@
 }
 
 /* Specify Swiper's Size: */
-.swiper-container, .swiper-slide {
-	width: 70%;
-	height: 70%;
+.swiper-container {
+	top: 0;
+	bottom: 0;
+	left: 5%;
+	right: 5%;
+	position: absolute;
 }
 
+.swiper-slide {
+	top: 0;
+	bottom: 0;
+	left: 5%;
+	right: 5%;
+}
 
+.swiper-slide img {
+	top: 0;
+	bottom: 0;
+	width: auto;
+}
+
+html, body {
+	margin: 0;
+}
+
+.swiper1 {
+	height: 100%;
+}
