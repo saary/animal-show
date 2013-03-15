@@ -4,12 +4,12 @@ var images = [
 ];
 
 var animals = [
-  { animal: 'cat', sound: 'http://sounds.simplythebest.net/files/MP3/dog_bark_1.mp3' },
+  { animal: 'cat', sound: 'http://sounds.simplythebest.net/files/MP3/cat_1.mp3' },
   { animal: 'dog', sound: 'http://sounds.simplythebest.net/files/MP3/dog_bark_1.mp3' },
-  { animal: 'horse', sound: 'http://sounds.simplythebest.net/files/MP3/dog_bark_1.mp3' },
-  { animal: 'rooster', sound: 'http://sounds.simplythebest.net/files/MP3/dog_bark_1.mp3' },
+  { animal: 'horse', sound: 'http://sounds.simplythebest.net/files/MP3/horse_neigh.mp3' },
+  { animal: 'rooster', sound: 'http://upload.wikimedia.org/wikipedia/commons/1/10/Rooster_crowing_small.ogg' },
   { animal: 'donkey', sound: 'http://sounds.simplythebest.net/files/MP3/dog_bark_1.mp3' },
-  { animal: 'goose', sound: 'http://sounds.simplythebest.net/files/MP3/dog_bark_1.mp3' },
+  { animal: 'goose', sound: 'http://sounds.simplythebest.net/files/MP3/ducks_landing_in_water.mp3' },
   { animal: 'bird', sound: 'http://sounds.simplythebest.net/files/MP3/dog_bark_1.mp3' },
   { animal: 'butterfly', sound: 'http://sounds.simplythebest.net/files/MP3/dog_bark_1.mp3' }
 ];
