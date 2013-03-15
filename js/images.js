@@ -4,14 +4,14 @@ var images = [
 ];
 
 var animals = [
-  'cat',
-  'dog',
-  'horse',
-  'rooster',
-  'donkey',
-  'goose',
-  'bird',
-  'butterfly'
+  { animal: 'cat', sound: 'http://sounds.simplythebest.net/files/MP3/dog_bark_1.mp3' },
+  { animal: 'dog', sound: 'http://sounds.simplythebest.net/files/MP3/dog_bark_1.mp3' },
+  { animal: 'horse', sound: 'http://sounds.simplythebest.net/files/MP3/dog_bark_1.mp3' },
+  { animal: 'rooster', sound: 'http://sounds.simplythebest.net/files/MP3/dog_bark_1.mp3' },
+  { animal: 'donkey', sound: 'http://sounds.simplythebest.net/files/MP3/dog_bark_1.mp3' },
+  { animal: 'goose', sound: 'http://sounds.simplythebest.net/files/MP3/dog_bark_1.mp3' },
+  { animal: 'bird', sound: 'http://sounds.simplythebest.net/files/MP3/dog_bark_1.mp3' },
+  { animal: 'butterfly', sound: 'http://sounds.simplythebest.net/files/MP3/dog_bark_1.mp3' }
 ];
 
 var SLIDE_TEMPLATE = '<div class="swiper-slide"><img /></div>';
@@ -47,18 +47,30 @@ function getRandomImage(json) {
   return results[index].MediaUrl;
 }
 
+function playmp3(url){
+    var audioElement = document.createElement('audio');
+    audioElement.setAttribute('src', url);
+    audioElement.load();
+    audioElement.addEventListener("canplay", function() {
+        audioElement.play();
+    });
+}
+
 function prepareSlider() {
   var slider = $('.swiper1');
   var sliderWrapper = $('.swiper-wrapper');
 
   for (i=0; i<animals.length; i++) {
     var slide = $(SLIDE_TEMPLATE);
-    (function(img) {
-      getAnimalImages(animals[i], function(json) {
+    (function(img, audioUrl) {
+      getAnimalImages(animals[i].animal, function(json) {
         var imageSrc = getRandomImage(json);
         img.attr('src', imageSrc);
       });
-    }(slide.find('img')));
+      img.on('click', function() {
+        playmp3(audioUrl);
+      });
+    }(slide.find('img'), animals[i].sound));
     sliderWrapper.append(slide);
   }
 
@@ -66,7 +78,6 @@ function prepareSlider() {
     pagination : '.pagination1'
   });
 }
-
 
 $(function(){
   prepareSlider();
