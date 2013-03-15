@@ -67,7 +67,7 @@ function prepareSlider() {
         var imageSrc = getRandomImage(json);
         img.attr('src', imageSrc);
       });
-      img.on('click touchstart', function() {
+      img.on('touchstart', function() {
         playmp3(audioUrl);
         return false;
       });
