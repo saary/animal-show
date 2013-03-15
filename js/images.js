@@ -67,8 +67,9 @@ function prepareSlider() {
         var imageSrc = getRandomImage(json);
         img.attr('src', imageSrc);
       });
-      img.on('click', function() {
+      img.on('click touchstart', function() {
         playmp3(audioUrl);
+        return false;
       });
     }(slide.find('img'), animals[i].sound));
     sliderWrapper.append(slide);
