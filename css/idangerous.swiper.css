@@ -78,9 +78,8 @@
 }
 
 .swiper-slide img {
-	bottom: 0;
-	top: 0;
 	width: auto;
+	height: 100%;
 }
 
 html, body {
