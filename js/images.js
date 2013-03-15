@@ -69,7 +69,6 @@ function prepareSlider() {
       });
       img.on('touchstart', function() {
         playmp3(audioUrl);
-        return false;
       });
     }(slide.find('img'), animals[i].sound));
     sliderWrapper.append(slide);
