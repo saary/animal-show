@@ -7,11 +7,11 @@ var animals = [
   { animal: 'cat', sound: 'http://sounds.simplythebest.net/files/MP3/cat_1.mp3' },
   { animal: 'dog', sound: 'http://sounds.simplythebest.net/files/MP3/dog_bark_1.mp3' },
   { animal: 'horse', sound: 'http://sounds.simplythebest.net/files/MP3/horse_neigh.mp3' },
-  { animal: 'rooster', sound: 'http://upload.wikimedia.org/wikipedia/commons/1/10/Rooster_crowing_small.ogg' },
-  { animal: 'donkey', sound: 'http://sounds.simplythebest.net/files/MP3/dog_bark_1.mp3' },
+  { animal: 'rooster', sound: '' },
+  { animal: 'donkey', sound: '' },
   { animal: 'goose', sound: 'http://sounds.simplythebest.net/files/MP3/ducks_landing_in_water.mp3' },
-  { animal: 'bird', sound: 'http://sounds.simplythebest.net/files/MP3/dog_bark_1.mp3' },
-  { animal: 'butterfly', sound: 'http://sounds.simplythebest.net/files/MP3/dog_bark_1.mp3' }
+  { animal: 'bird', sound: '' },
+  { animal: 'butterfly', sound: '' }
 ];
 
 var SLIDE_TEMPLATE = '<div class="swiper-slide"><img /></div>';
@@ -67,7 +67,7 @@ function prepareSlider() {
         var imageSrc = getRandomImage(json);
         img.attr('src', imageSrc);
       });
-      img.on('touchstart', function() {
+      img.on('click', function() {
         playmp3(audioUrl);
       });
     }(slide.find('img'), animals[i].sound));
