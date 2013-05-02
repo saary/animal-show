@@ -90,3 +90,9 @@ html, body {
 .swiper1 {
 	height: 600px;
 }
+
+.attr {
+	background-color: white;
+	position: absolute;
+	margin-top: -25px;
+}

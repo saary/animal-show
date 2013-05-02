@@ -7,13 +7,17 @@ var animals = [
   { animal: 'cat', sound: 'http://sounds.simplythebest.net/files/MP3/cat_1.mp3' },
   { animal: 'dog', sound: 'http://sounds.simplythebest.net/files/MP3/dog_bark_1.mp3' },
   { animal: 'horse', sound: 'http://sounds.simplythebest.net/files/MP3/horse_neigh.mp3' },
-  { animal: 'rooster', sound: '' },
-  { animal: 'donkey', sound: '' },
-  { animal: 'goose', sound: 'http://sounds.simplythebest.net/files/MP3/ducks_landing_in_water.mp3' },
-  { animal: 'bird', sound: '' },
-  { animal: 'butterfly', sound: '' }
+  { animal: 'rooster', sound: 'http://soundbible.com/mp3/Rooster-SoundBible.com-1114473528.mp3', attr: '<a href="http://soundbible.com/1510-Rooster.html">Rooster</a> - Attribution 3.0 | Recorded by Mike Koenig' },
+  { animal: 'donkey', sound: 'http://www.freesound.org/data/previews/16/16933_37876-lq.mp3', attr: '<a href="http://www.freesound.org/people/acclivity/sounds/16933/">Donkey</a> - CC (non commercial) | Recorded by acclivity' },
+  { animal: 'mallard duck', sound: 'http://soundbible.com/mp3/mallard_duck_quacking-Mike_Koenig-1781775990.mp3', attr: '<a href="http://soundbible.com/1862-Mallard-Duck-Quacking.html">Mallard Duck</a> - Attribution 3.0 | Mike Koenig' },
+  { animal: 'bird', sound: 'http://soundbible.com/mp3/Best Cardinal Bird-SoundBible.com-1171415022.mp3', attr: '<a href="http://soundbible.com/1515-Best-Cardinal-Bird.html">Cardinal Bird</a> - Attribution 3.0 | Recorded by PsychoBird' },
+  { animal: 'butterfly', sound: 'http://soundbible.com/mp3/Butterfly-SoundBible.com-1530156556.mp3', attr:'<a href="http://soundbible.com/1322-Butterfly.html">Butterfly</a> - Attribution 3.0 | Recorded by Mike Koenig' },
+  { animal: 'cow', sound: 'http://soundbible.com/mp3/Single Cow-SoundBible.com-2051754137.mp3', attr:'<a href="http://soundbible.com/1572-Single-Cow.html">Cow</a> - Attribution 3.0 | Recorded by BuffBill84' }
 ];
 
+
+
+var ATTRIBUTION_TEMPLATE = '<div class="attr"><small>{0}</small></div>';
 var SLIDE_TEMPLATE = '<div class="swiper-slide"><img /></div>';
 
 function getAnimalImages(animal, cb) {
@@ -27,6 +31,18 @@ function getAnimalImages(animal, cb) {
   }
 
   return cb(JSON.parse(value));
+}
+
+function loadSounds() {
+  animals.forEach(function(animal) {
+    if (animal.sound) {
+      var audioElement = document.createElement('audio');
+      audioElement.setAttribute('src', animal.sound);
+      audioElement.setAttribute("preload","auto");
+      document.body.appendChild(audioElement);
+      animal.audio = audioElement;
+    }
+  });  
 }
 
 function getImages(animal, cb) {
@@ -47,13 +63,18 @@ function getRandomImage(json) {
   return results[index].MediaUrl;
 }
 
-function playmp3(url){
-    var audioElement = document.createElement('audio');
-    audioElement.setAttribute('src', url);
-    audioElement.load();
-    audioElement.addEventListener("canplay", function() {
-        audioElement.play();
-    });
+function playmp3(audio) {
+  if (audio) {
+    if (audio.readyState >= 3) {
+      audio.play();
+    }
+    else {
+      audio.load();
+      $.one('canplay', function() {
+        audio.play();
+      });
+    }
+  }
 }
 
 function prepareSlider() {
@@ -62,15 +83,19 @@ function prepareSlider() {
 
   for (i=0; i<animals.length; i++) {
     var slide = $(SLIDE_TEMPLATE);
-    (function(img, audioUrl) {
+    (function(img, audio) {
       getAnimalImages(animals[i].animal, function(json) {
         var imageSrc = getRandomImage(json);
         img.attr('src', imageSrc);
       });
       img.on('click', function() {
-        playmp3(audioUrl);
+        playmp3(audio);
       });
-    }(slide.find('img'), animals[i].sound));
+    }(slide.find('img'), animals[i].audio));
+    if (animals[i].attr) {
+      var attr = ATTRIBUTION_TEMPLATE.replace('{0}', animals[i].attr);
+      slide.append(attr);
+    }
     sliderWrapper.append(slide);
   }
 
@@ -80,6 +105,7 @@ function prepareSlider() {
 }
 
 $(function(){
+  loadSounds();
   prepareSlider();
 })
 
