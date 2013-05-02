@@ -41,6 +41,7 @@ function loadSounds() {
       audioElement.setAttribute("preload","auto");
       document.body.appendChild(audioElement);
       animal.audio = audioElement;
+      audioElement.load();
     }
   });  
 }
